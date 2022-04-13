@@ -18,5 +18,13 @@ Route::get('/', function () {
 });
 
 Route::get('/hello/{name}', function (string $name) {
-    return "welcome {$name}";
+    return "Welcome to my app {$name}";
+});
+
+Route::get('/about', function (string $name) {
+    return "My first app create framework Laravel use sail docker";
+});
+
+Route::get('/news', function (string $name) {
+    return "News create app use sail my first app";
 });
