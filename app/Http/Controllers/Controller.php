@@ -33,7 +33,7 @@ class Controller extends BaseController
             $data[] =[
                 'id'     => $id,
                 'title'  => $faker->jobTitle(),
-                'author' => $faker->userName(250, 170),
+                'author' => $faker->userName(),
                 'image'  => $faker->imageUrl(),
                 'status' => $statusList[mt_rand(0,2)],
                 'description' => "<strong>" . $faker->text(100) . "</strong>",
