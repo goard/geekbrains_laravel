@@ -8,7 +8,9 @@
     </div>
   </div>
   <div class="raw">
-    <form method="post">
+    @include('inc.messages')
+    <form method="post" action="{{ route('admin.categories.store') }}">
+      @csrf
       <div class="form-group">
         <label for="title">Наименование</label>
         <input type="text" class="form-control" name="title" id="title"/>

@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('sources', function (Blueprint $table) {
             $table->id();
+            $table->string('title', 192);
             $table->string('portalMedia');
             $table->dateTime('freshNews');
-            $table->string('author', 191);
+            $table->string('url', 255);
             $table->timestamps();
         });
     }

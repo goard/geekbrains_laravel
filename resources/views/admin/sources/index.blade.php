@@ -1,36 +1,34 @@
 @extends('layouts.admin')
-@section('title') Список категорий @endsection
+@section('title') Источник новостей @parent @endsection
 @section('content')
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Список категорий</h1>
+    <h1 class="h2">Источник новостей</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group me-2">
-        <a href="{{ route('admin.categories.create') }}" class="btn btn-sm btn-outline-secondary">Добавить категорию</a>
+        <a href="{{ route('admin.sources.create') }}" class="btn btn-sm btn-outline-secondary">Добавить источник новости</a>
       </div>
     </div>
   </div>
-
   <div class="table-responsive">
     @include('inc.messages')
     <table class="table table-bordered">
       <thead>
         <tr>
           <th>#ID</th>
-          <th>Кол-во новостей</th>
-          <th>Заголовок</th>
-          <th>Описание</th>
-          <th>Опции</th>
+          <th>Название</th>
+          <th>Источник новости</th>
+          <th>Дата новости</th>
         </tr>
       </thead>
       <tbody>
-        @forelse($categories as $category)
+        @forelse($sourcesNewsList as $element)
           <tr>
-            <td>{{ $category->id }}</td>
-            <td>{{ $category->news->count() }}</td>
-            <td>{{ $category->title }}</td>
-            <td>{{ $category->description }}</td>
+            <td>{{ $element->id }}</td>
+            <td>{{ $element->title }}</td>
+            <td>{{ $element->portalMedia }}</td>
+            <td>{{ $element->freshNews }}</td>
             <td>
-              <a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}">
+              <a href="{{ route('admin.sources.edit', $element) }}">
                 Ред.
               </a>
               &nbsp;
@@ -46,11 +44,6 @@
         @endforelse
       </tbody>
     </table>
-    {{ $categories->links() }}
+    {{ $sourcesNewsList->links() }}
   </div>
-
 @endsection
-
-@push('js')
-  <script>//alert("Welcome")</script>
-@endpush
