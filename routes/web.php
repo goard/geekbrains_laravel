@@ -7,10 +7,13 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ReportController;
 
 use App\Http\Controllers\Account\IndexController as AccountController;
+
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+
 use App\Http\Controllers\Admin\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\SourcesController as AdminSourcesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +37,8 @@ Route::get('/news', [NewsController::class, 'index'])
 Route::get('news/{id}', [NewsController::class, 'show'])
     ->where('id', '\d+')
     ->name('news.show');
+Route::get('/about', [AboutController::class, 'index'])
+    ->name('about');
 Route::get('/category', [CategoryController::class, 'index'])
     ->name('category');
 Route::get('category/{id}', [CategoryController::class, 'show'])
@@ -84,3 +89,4 @@ Route::get('session', function() {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

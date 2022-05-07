@@ -1,3 +1,4 @@
+
 @extends('layouts.admin')
 @section('title') Добавить запись @endsection
 @section('content')
@@ -56,3 +57,4 @@
 @push('js')
   <script>//alert("Welcome")</script>
 @endpush
+
