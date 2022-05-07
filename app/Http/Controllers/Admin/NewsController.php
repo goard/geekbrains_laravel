@@ -47,6 +47,7 @@ class NewsController extends Controller
      */
     public function store(CreateRequest $request)
     {
+
         $request->validate([
             'title' => ['required', 'string']
         ]);
@@ -58,6 +59,7 @@ class NewsController extends Controller
         }
 
         return back()->with('error', __('messages.admin.news.create.fail'));
+
     }
 
     /**
