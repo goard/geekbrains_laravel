@@ -41,6 +41,7 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => ['required', 'string']
         ]);
@@ -59,6 +60,7 @@ class NewsController extends Controller
         }
 
         return back()->with('error', 'Ошибка добавления');
+
     }
 
     /**
