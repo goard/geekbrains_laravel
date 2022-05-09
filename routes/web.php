@@ -6,6 +6,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ReportController;
 
+use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\Account\IndexController as AccountController;
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 
 use App\Http\Controllers\Admin\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\SourcesController as AdminSourcesController;
+use App\Http\Controllers\Admin\ParserController;
 
 
 /*
@@ -63,6 +65,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin.check'], function() {
         Route::get('/', AdminIndexController::class)
             ->name('index');
+
+        Route::get('parser', ParserController::class)
+            ->name('parser');
+
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('news', AdminNewsController::class);
         Route::resource('sources', AdminSourcesController::class);
@@ -87,6 +93,16 @@ Route::get('session', function() {
     session([$name => 'test']);
 });
 Auth::routes();
+
+// socials routes
+Route::group(['middleware' => 'guest'], function() {
+    Route::get('/auth/{network}/redirect', [SocialController::class, 'index'])
+        ->where('network', '\w+')
+        ->name('auth.redirect');
+    Route::get('/auth/{network}/callback', [SocialController::class, 'callback'])
+        ->where('network', '\w+')
+        ->name('auth.callback');
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
